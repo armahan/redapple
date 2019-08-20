@@ -1,3 +1,19 @@
-<p>
-  quiz-edit works!
-</p>
+<div class="col-9 ">
+  <form [formGroup]="testForm">
+    <div class="form-group">
+      <label for="testName">Test name</label>
+      <input type="text" class="form-control" formControlName="testName">
+    </div>
+    <div class="form-group">
+      <label for="testDescription">Test description</label>
+      <input type="text" class="form-control" formControlName="testDescription">
+    </div>
+    </form>
+    <div class="nav nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+      <button class="btn btn-outline-success flex-sm-fill text-sm-center" 
+        (click)="updateLevel()">Save test</button>
+      <button class="btn btn-outline-success flex-sm-fill text-sm-center" (click)="editEnable()">Edit test</button>
+      <button class="btn btn-outline-primary flex-sm-fill text-sm-center" (click)="createContent()">Add new question</button>
+    </div>
+    <div></div>
+</div>

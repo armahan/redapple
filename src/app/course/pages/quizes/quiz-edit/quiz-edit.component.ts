@@ -1,4 +1,5 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Contents } from 'src/app/core';
 
@@ -8,6 +9,10 @@ import { Contents } from 'src/app/core';
   styleUrls: ['./quiz-edit.component.css']
 })
 export class QuizEditComponent implements OnInit {
+  public testForm = new FormGroup({
+    testName: new FormControl('', { validators: Validators.required }),
+    testDescription: new FormControl('', { validators: Validators.required })
+  });
 
   constructor() { }
 
