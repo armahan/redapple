@@ -1,0 +1,66 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-3" style="padding: 15px">
+      <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"
+          aria-controls="v-pills-home" aria-selected="true">Get all contents</a>
+        <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab"
+          aria-controls="v-pills-profile" aria-selected="false">Get all test</a>
+      </div>
+    </div>
+    <div class="col-9 ">
+      <div class="nav nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <button class="btn btn-outline-success flex-sm-fill text-sm-center" [disabled]="!updateSection"
+          (click)="updateLevel()">Update section</button>
+        <button class="btn btn-outline-success flex-sm-fill text-sm-center" (click)="editEnable()">Edit section</button>
+        <button class="btn btn-outline-primary flex-sm-fill text-sm-center" (click)="createContent()">Create
+          content</button>
+        <button class="btn btn-outline-primary flex-sm-fill text-sm-center" (click)="createTest()">Create test</button>
+      </div>
+      <div class="col-9" *ngIf="editLevel">
+        <form [formGroup]="levelForm">
+          <div class="form-group">
+            <label for="levelName">Level name</label>
+            <input type="text" class="form-control" formControlName="levelName">
+          </div>
+          <div class="form-group">
+            <label for="levelDescription">Level description</label>
+            <input type="text" class="form-control" formControlName="levelDescription">
+          </div>
+        </form>
+      </div>
+      <table class="table table-striped" *ngIf="section && !activeContent && !activeTest">
+        <thead>
+          <tr>
+            <th scope="col">Section Name</th>
+            <th scope="col">Content Name</th>
+            <th scope="col">Order</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let crs of section.contents">
+            <th scope="row">{{section.level_name}}</th>
+            <td *ngIf="crs.content_name">{{crs.content_name}}</td>
+            <td *ngIf="crs.test_name">{{crs.test_name}}</td>
+            <td >{{crs.weight}}</td>
+            <td><button type="button" class="btn btn-link btn-sm" [disabled]="crs.weight==0" (click)="weightSwap(crs.weight, crs.weight-1)">Up &uarr;</button></td>
+            <td><button type="button" class="btn btn-link btn-sm" [disabled]="crs.weight==section.contents.length-1" (click)="weightSwap(crs.weight, crs.weight+1)">Down&darr;</button></td>
+            <td *ngIf="crs.content_name" ><button class="btn btn-outline-success" (click)="editContent(crs.content_id)">edit</button></td>
+            <td *ngIf="crs.content_name" ><button class="btn btn-outline-warning" (click)="removeContent(crs.weight)">remove</button></td>
+            <td *ngIf="crs.test_name" ><button class="btn btn-outline-success" (click)="editTest(crs.test_id)">edit</button></td>
+            <td *ngIf="crs.test_name" ><button class="btn btn-outline-warning" (click)="removeContent(crs.weight)">remove</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+    </div>
+    <div class="col-9">
+      <app-content-edit *ngIf="activeContent" [content_id]="content_id" [level_id]="id" [weight]="weight" (sendContent)="getNewContent($event)">
+      </app-content-edit>
+      <app-quiz-edit *ngIf="activeTest" [level_id]="id" [weight]="weight" (sendTest)="getNewTest($event)"></app-quiz-edit>
+    </div>
+  </div>
+</div>

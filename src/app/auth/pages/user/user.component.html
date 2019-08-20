@@ -1,0 +1,14 @@
+<form class="form-signin" [formGroup]="updateForm" (ngSubmit)="onSubmit()" *ngIf="isLoggedIn">
+  <h1 class="h3 mb-3 font-weight-normal">Account settings</h1>
+  <label for="userName" class="sr-only">User name</label>
+  <input type="userName" id="userName" class="form-control" placeholder="User name" formControlName="userName">
+  <label for="inputEmail" class="sr-only">Email address</label>
+  <input type="eMail" id="inputEmail" class="form-control" placeholder="Email address" formControlName="email">
+  <label for="inputPassword" class="sr-only">Password</label>
+  <input type="password" id="inputPassword" class="form-control" placeholder="Password" formControlName="password">
+  <br>
+  <label for="authLevel" class="sr-only">Account type</label>
+  <input type="authLevel" id="authLevel" class="form-control" placeholder="Account type" formControlName="authLevel">
+  <br>
+  <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!updateForm.valid">Update</button>
+</form>

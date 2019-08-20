@@ -1,0 +1,22 @@
+<div class="row">
+  <form [formGroup]="contentForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+          <label for="exampleFormControlSelect1">Subjects</label>
+          <select class="form-control" formControlName="subjectSearch" *ngIf="subjects">
+          <option *ngFor="let subject of subjects.subjects" [value]="subject.subject_id">{{subject.subject_name}}</option>
+          </select>
+        </div>
+    <div class="form-group">
+    <label>Content name</label>
+    <input type="text" class="form-control" formControlName="contentName" placeholder="Content name">
+  </div>
+  <div class="form-group">
+      <label>Content</label>
+    <quill-editor formControlName="content"></quill-editor>
+  </div>
+    <button type="submit" class="btn btn-outline-primary">Save</button>
+  </form>
+</div>
+<div class="row">
+    <quill-view-html [content]="equation"></quill-view-html>
+</div>

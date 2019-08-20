@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="row " *ngIf="courseContent">
+
+    <nav class="col-md-2 sidebar" style="padding: 15px">
+      <div class="panel-group">
+        <div class="panel" *ngFor="let section of courseContent.levels">
+          <div class="panel-heading">
+            <ul class="list-group">
+              <a data-toggle="collapse" class="list-group-item "
+                [attr.data-target]="'#collapse'+section.level_id"
+                (click)="gotoSectionDetails(section.level_id)">{{section.level_name}}</a>
+            </ul>
+          </div>
+          <div id="collapse{{section.level_id}}" class="panel-collapse collapse" *ngIf="sectionContent">
+            <ul class="list-group" *ngFor="let content of sectionContent.contents">
+
+              <a class="list-group-item list-group-item-action" *ngIf="content.content_name"
+                (click)="goToContent(content.content_id)">Content Name: {{content.content_name}}</a>
+              <a class="list-group-item list-group-item-action" *ngIf="content.test_name"
+                (click)="goToTest(content.test_id)">Test Name: {{content.test_name}}</a>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="col-md-8" style="padding: 15px">
+      <app-content [contentId]="contentId" *ngIf="contentId"></app-content>
+      <app-quiz [testId]="testId" *ngIf="testId"></app-quiz>
+    </div>
+    <div class="col-md-2"> advertising space</div>
+  </div>
+
+</div>

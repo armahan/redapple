@@ -1,0 +1,45 @@
+<div class="container-fluid">
+  <div class="col">
+  <div class="row" *ngIf="sectionContent">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Course Name</th>
+          <th scope="col">Section Name</th>
+          <th scope="col">Section Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let crs of sectionContent.levels">
+          <th scope="row">{{sectionContent.game_name}}</th>
+          <td>{{crs.level_name}}</td>
+          <td>{{crs.level_description}}</td>
+          <td>{{crs.weight}}</td>
+          <td><button type="button" class="btn btn-link btn-sm" [disabled]="crs.weight==0" (click)="weightSwap(crs.weight, crs.weight-1)">Up &uarr;</button></td>
+          <td><button type="button" class="btn btn-link btn-sm" [disabled]="crs.weight==sectionContent.levels.length-1" (click)="weightSwap(crs.weight, crs.weight+1)">Down&darr;</button></td>
+          <td><button class="btn btn-outline-success" (click)="editLevel(crs.level_id)">edit</button></td>
+          <td><button class="btn btn-outline-danger" (click)="deleteLevel(crs.level_id)">delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="row">
+    <form [formGroup]="sectionForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="col">
+      <input type="text" class="form-control" formControlName="sectionName" placeholder="Section Name">
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" formControlName="description" placeholder="Section Description">
+    </div>
+    <div class="col">
+        <select  class="form-control" formControlName="weight" >
+          <option  [ngValue]="levelCount" >{{levelCount}}</option>
+        </select>
+    </div>
+      <button type="submit" class="btn btn-outline-primary" [disabled]="!sectionForm.valid">add</button>
+    </div>
+    </form>
+  </div>
+</div>
+</div>

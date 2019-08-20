@@ -1,0 +1,22 @@
+<div class="container">
+<div class="row" *ngIf="sectionContent">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Course Name</th>
+        <th scope="col">Section Name</th>
+        <th scope="col">Section Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let crs of sectionContent.levels">
+        <th scope="row">{{sectionContent.game_name}}</th>
+        <td>{{crs.level_name}}</td>
+        <td>{{crs.level_description}}</td>
+        <td>{{crs.weight}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <button type="button" class="btn btn-outline-primary btn-lg">Subscribe</button>
+</div>
+</div>
