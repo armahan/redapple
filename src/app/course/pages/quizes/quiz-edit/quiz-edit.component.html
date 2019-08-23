@@ -1,4 +1,4 @@
-<div class="col-9 ">
+<div class="col-9" *ngIf="!activeNewQuestion">
   <form *ngIf="!editTest" [formGroup]="testForm">
     <div class="form-group">
       <label for="testName">Test name</label>
@@ -46,4 +46,7 @@
         </tr>
       </tbody>
     </table>
+</div>
+<div class="col-9">
+  <app-question-edit *ngIf="activeNewQuestion" (sendQuestion)="getNewQuestion($event)"></app-question-edit>
 </div>

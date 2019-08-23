@@ -23,6 +23,7 @@ export class QuizEditComponent implements OnInit {
   createdTest: Contents;
   createdTestId: number;
   editTest: boolean = false;
+  activeNewQuestion : boolean = false;
   myQuestions: Questions;
 
   ngOnInit() {
@@ -72,5 +73,13 @@ export class QuizEditComponent implements OnInit {
   removeQuestion(question: any) {
     this.myQuestions.questions.push(question)
     this.createdTest.questions.splice(question, 1)
+  }
+
+  createQuestion(){
+    this.activeNewQuestion = !this.activeNewQuestion
+  }
+
+  getNewQuestion($event){
+    console.log($event)
   }
 }

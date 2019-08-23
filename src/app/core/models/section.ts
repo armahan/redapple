@@ -1,5 +1,4 @@
 import { Question } from './question';
-import { Questions } from './questions';
 
 export class Section{
     level_id: number;
