@@ -1,19 +1,49 @@
 <div class="col-9 ">
-  <form [formGroup]="testForm">
+  <form *ngIf="!editTest" [formGroup]="testForm">
     <div class="form-group">
       <label for="testName">Test name</label>
-      <input type="text" class="form-control" formControlName="testName">
-    </div>
-    <div class="form-group">
-      <label for="testDescription">Test description</label>
-      <input type="text" class="form-control" formControlName="testDescription">
+      <input type="text" class="form-control" [readonly]="editTest" formControlName="testName">
     </div>
     </form>
+    <table *ngIf="editTest && createdTest" class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Question Code</th>
+          <th scope="col">Question</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let qst of createdTest.questions">
+          <td >{{qst.code}}</td>
+          <td >{{qst.question}}</td>
+          <td><button type="button" class="btn btn-warning btn-sm" (click)="removeQuestion(qst)">remove</button></td>
+          <td><button type="button" class="btn btn-success btn-sm">edit</button></td>
+        </tr>
+      </tbody>
+    </table>
     <div class="nav nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-      <button class="btn btn-outline-success flex-sm-fill text-sm-center" 
-        (click)="updateLevel()">Save test</button>
-      <button class="btn btn-outline-success flex-sm-fill text-sm-center" (click)="editEnable()">Edit test</button>
-      <button class="btn btn-outline-primary flex-sm-fill text-sm-center" (click)="createContent()">Add new question</button>
+      <button *ngIf="editTest" class="btn btn-outline-success flex-sm-fill text-sm-center"
+        (click)="updateTest()">Update test</button>
+        <button *ngIf="!editTest && !createTest" class="btn btn-outline-success flex-sm-fill text-sm-center" [disabled]="!testForm.valid"
+        (click)="createTestName()">Create test</button>
+      <button *ngIf="editTest" class="btn btn-outline-success flex-sm-fill text-sm-center" (click)="editEnable()">Edit test</button>
+      <button *ngIf="editTest" class="btn btn-outline-primary flex-sm-fill text-sm-center" (click)="createQuestion()">Add new question</button>
+      <button *ngIf="editTest" class="btn btn-outline-primary flex-sm-fill text-sm-center" (click)="Questions()">Show questions</button>
     </div>
-    <div></div>
+    <table *ngIf="myQuestions && editTest" class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Question Code</th>
+          <th scope="col">Question</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let qst of myQuestions.questions">
+          <td >{{qst.code}}</td>
+          <td >{{qst.question}}</td>
+          <td><button type="button" class="btn btn-info btn-sm" (click)="addQuestion(qst)">add</button></td>
+          <td><button type="button" class="btn btn-success btn-sm"(click)="editQuestion(qst.question_id)">edit</button></td>
+        </tr>
+      </tbody>
+    </table>
 </div>

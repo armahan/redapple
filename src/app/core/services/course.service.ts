@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 import { Course, Section, Subject, Content, Test, Question, Courses, Contents } from '../models';
+import { Questions } from '../models/questions';
 
 @Injectable({
   providedIn: 'root'
@@ -99,14 +100,27 @@ export class CourseService {
     return this.http.get<Content>(this.redAppleUrl + 'content/' + contentId);
   }
 
-  createQuiz(quizName: string, questions: Array<Question>) {
-    return this.http.post<Test>(this.redAppleUrl + 'test/create', {
+  createQuiz(quizName: string) {
+    return this.http.post<Contents>(this.redAppleUrl + 'test/create', {
+      test_name: quizName
+    });
+  }
+
+  updateQuiz(quizId:number, quizName: string, questions: Array<Question>) {
+    return this.http.put<Contents>(this.redAppleUrl + 'test/'+ quizId, {
       test_name: quizName,
       questions: questions
     });
   }
 
   getQuiz(quizId: number) {
-    return this.http.get<Test>(this.redAppleUrl + 'test/' + quizId);
+    return this.http.get<Contents>(this.redAppleUrl + 'test/' + quizId);
+  }
+  getAllQuestions(){
+    return this.http.get<Questions>(this.redAppleUrl+'questions');
+  }
+
+  getUserQuestions(){
+    return this.http.get<Questions>(this.redAppleUrl+'questions/user');
   }
 }

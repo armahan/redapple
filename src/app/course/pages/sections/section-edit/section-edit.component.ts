@@ -26,6 +26,7 @@ export class SectionEditComponent implements OnInit {
   editLevel: boolean = false;
   level_id: number;
   content_id: number;
+  test_id:number;
   weight: number;
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -39,6 +40,7 @@ export class SectionEditComponent implements OnInit {
         this.section.contents.sort(function (obj1, obj2) {
           return obj1.weight - obj2.weight;
         })
+        console.log(this.section)
       })
     }
   }
@@ -79,7 +81,10 @@ export class SectionEditComponent implements OnInit {
     this.content_id = id
     this.createContent()
   }
-
+  editTest(id: number) {
+    this.test_id = id
+    this.createTest()
+  }
   setForm(level_name: string, level_description: string) {
     this.levelForm.patchValue({
       levelName: level_name,

@@ -60,7 +60,7 @@
     <div class="col-9">
       <app-content-edit *ngIf="activeContent" [content_id]="content_id" [level_id]="id" [weight]="weight" (sendContent)="getNewContent($event)">
       </app-content-edit>
-      <app-quiz-edit *ngIf="activeTest" [level_id]="id" [weight]="weight" (sendTest)="getNewTest($event)"></app-quiz-edit>
+      <app-quiz-edit *ngIf="activeTest" [test_id]="test_id" [level_id]="id" [weight]="weight" (sendTest)="getNewTest($event)"></app-quiz-edit>
     </div>
   </div>
 </div>

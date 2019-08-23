@@ -2,6 +2,7 @@ export * from './user';
 export * from './subject';
 export * from './content';
 export * from './question';
+export * from './questions';
 export * from './option';
 export * from './test';
 export * from './section';

@@ -1,3 +1,5 @@
+import { Question } from './question';
+import { Questions } from './questions';
 
 export class Section{
     level_id: number;
@@ -14,5 +16,6 @@ export interface  Contents{
     content: string;
     test_id:number;
     test_name:string;
+    questions:Array<Question>;
     weight: number;
 }
