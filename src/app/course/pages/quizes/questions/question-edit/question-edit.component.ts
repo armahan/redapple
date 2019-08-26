@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormArray, Validators, FormControl, FormGroup } from '@angular/forms';
 
 import { CourseService, Question, Subject } from 'src/app/core';
@@ -16,8 +16,9 @@ export class QuestionEditComponent implements OnInit {
   constructor(private fb: FormBuilder, private course: CourseService) { }
 
   @Output() sendQuestion = new EventEmitter<Question>();
-
+  @Input()  questionId : number;
   ngOnInit() {
+    console.log(this.questionId)
     this.getSubjects()
     this.questionForm= this.fb.group({
       questionCode: new FormControl('', {validators: Validators.required}),

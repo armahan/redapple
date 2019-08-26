@@ -23,11 +23,12 @@ export class QuizEditComponent implements OnInit {
   createdTest: Contents;
   createdTestId: number;
   editTest: boolean = false;
-  activeNewQuestion : boolean = false;
+  activeNewQuestion: boolean = false;
   myQuestions: Questions;
+  questionId:number;
 
   ngOnInit() {
-    if(this.test_id){
+    if (this.test_id) {
       this.editTest = true
       this.getTest(this.test_id)
     }
@@ -42,28 +43,39 @@ export class QuizEditComponent implements OnInit {
   }
   updateTest() {
     console.log(this.createdTest)
-    this.updateQuiz(this.createdTest.test_id, this.createdTest.test_name, this.createdTest.questions)  
+    if(this.testForm.valid){
+      this.updateQuiz(this.createdTest.test_id, this.testForm.value.testName, this.createdTest.questions)
+    }else{
+      this.updateQuiz(this.createdTest.test_id, this.createdTest.test_name, this.createdTest.questions)
+    }
+    
   }
-  createQuiz(testName:string){
-    this.course.createQuiz(testName).subscribe((responseData)=>{
+  createQuiz(testName: string) {
+    this.course.createQuiz(testName).subscribe((responseData) => {
       this.createdTest = responseData
       this.createdTest.level_id = this.level_id
-      this.createdTest.weight = this.weight     
+      this.createdTest.weight = this.weight
       this.sendTest.emit(this.createdTest)
     })
   }
-  updateQuiz(testId:number, testName:string, questions:Array<Question>){
+  updateQuiz(testId: number, testName: string, questions: Array<Question>) {
     this.course.updateQuiz(testId, testName, questions).subscribe()
   }
   editEnable() {
     this.editTest = false
+    console.log(this.createdTest.test_name)
   }
-
+  setTestForm(testName: string) {
+    this.testForm.patchValue({
+      testName: testName
+    })
+  }
   getTest(val: number) {
     this.course.getQuiz(val).subscribe((responseData) => {
       this.createdTest = responseData
       this.createdTest.level_id = this.level_id
-      this.createdTest.weight = this.weight      
+      this.createdTest.weight = this.weight
+      this.setTestForm(this.createdTest.test_name)
     })
   }
   addQuestion(question: any) {
@@ -74,12 +86,15 @@ export class QuizEditComponent implements OnInit {
     this.myQuestions.questions.push(question)
     this.createdTest.questions.splice(question, 1)
   }
-
-  createQuestion(){
+  editQuestion(val:number){
+    this.questionId = val
+    this.activeNewQuestion = !this.activeNewQuestion
+  }
+  createQuestion() {
     this.activeNewQuestion = !this.activeNewQuestion
   }
 
-  getNewQuestion($event){
+  getNewQuestion($event) {
     console.log($event)
   }
 }

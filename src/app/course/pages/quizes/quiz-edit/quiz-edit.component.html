@@ -1,8 +1,8 @@
 <div class="col-9" *ngIf="!activeNewQuestion">
-  <form *ngIf="!editTest" [formGroup]="testForm">
+  <form [formGroup]="testForm">
     <div class="form-group">
       <label for="testName">Test name</label>
-      <input type="text" class="form-control" [readonly]="editTest" formControlName="testName">
+      <input type="text" class="form-control" formControlName="testName">
     </div>
     </form>
     <table *ngIf="editTest && createdTest" class="table table-striped">
@@ -26,7 +26,6 @@
         (click)="updateTest()">Update test</button>
         <button *ngIf="!editTest && !createTest" class="btn btn-outline-success flex-sm-fill text-sm-center" [disabled]="!testForm.valid"
         (click)="createTestName()">Create test</button>
-      <button *ngIf="editTest" class="btn btn-outline-success flex-sm-fill text-sm-center" (click)="editEnable()">Edit test</button>
       <button *ngIf="editTest" class="btn btn-outline-primary flex-sm-fill text-sm-center" (click)="createQuestion()">Add new question</button>
       <button *ngIf="editTest" class="btn btn-outline-primary flex-sm-fill text-sm-center" (click)="Questions()">Show questions</button>
     </div>
@@ -48,5 +47,5 @@
     </table>
 </div>
 <div class="col-9">
-  <app-question-edit *ngIf="activeNewQuestion" (sendQuestion)="getNewQuestion($event)"></app-question-edit>
+  <app-question-edit *ngIf="activeNewQuestion" [questionId]="questionId" (sendQuestion)="getNewQuestion($event)"></app-question-edit>
 </div>
