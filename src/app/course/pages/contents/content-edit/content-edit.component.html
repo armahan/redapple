@@ -1,7 +1,7 @@
 <div class="row">
   <form [formGroup]="contentForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
-          <label for="exampleFormControlSelect1">Subjects</label>
+          <label for="subjectSearch">Subjects</label>
           <select class="form-control" formControlName="subjectSearch" *ngIf="subjects">
           <option *ngFor="let subject of subjects.subjects" [value]="subject.subject_id">{{subject.subject_name}}</option>
           </select>
