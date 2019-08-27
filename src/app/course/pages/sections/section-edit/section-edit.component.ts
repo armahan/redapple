@@ -40,7 +40,6 @@ export class SectionEditComponent implements OnInit {
         this.section.contents.sort(function (obj1, obj2) {
           return obj1.weight - obj2.weight;
         })
-        console.log(this.section)
       })
     }
   }

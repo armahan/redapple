@@ -14,7 +14,7 @@
       <label for="question">Question</label>
       <quill-editor formControlName="question"></quill-editor>
     </div>
-    <div formArrayName="optionsArray" *ngFor="let arrayItem of questionForm.get('optionsArray').controls; let i=index">
+    <div formArrayName="options" *ngFor="let arrayItem of questionForm.get('options').controls; let i=index">
       <div class="form-group" [formGroupName]="i">
         <label for="answer">Answer</label>
         <quill-editor formControlName="answer">
@@ -25,13 +25,14 @@
           </div>
         </quill-editor>
         <div class="form-check">
-          <input formControlName="isTrue" class="form-check-input" type="checkbox" value="true">
+          <input formControlName="is_true" class="form-check-input" type="checkbox" value="true">
           <label class="form-check-label" for="isTrue">Is true</label>
         </div>
       </div>
       <button type="button" class="btn btn-warning" (click)="removeAnswer(i)">Remove answer</button>
     </div>
-    <button type="submit" class="btn btn-primary" [disabled]="!questionForm.valid">Submit</button>
+    <button type="submit" class="btn btn-primary" *ngIf="!editMode" [disabled]="!questionForm.valid">Submit</button>
+    <button type="button" class="btn btn-primary" *ngIf="editMode" [disabled]="!questionForm.valid" (click)="updateQuestion()">Update</button>
     <button type="button" class="btn btn-primary" (click)="addAnswer()">Add answer</button>
   </form>
 </div>

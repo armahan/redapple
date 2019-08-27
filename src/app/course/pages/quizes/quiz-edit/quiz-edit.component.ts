@@ -63,7 +63,6 @@ export class QuizEditComponent implements OnInit {
   }
   editEnable() {
     this.editTest = false
-    console.log(this.createdTest.test_name)
   }
   setTestForm(testName: string) {
     this.testForm.patchValue({
@@ -95,6 +94,6 @@ export class QuizEditComponent implements OnInit {
   }
 
   getNewQuestion($event) {
-    console.log($event)
+    this.createdTest.questions.push($event)
   }
 }
