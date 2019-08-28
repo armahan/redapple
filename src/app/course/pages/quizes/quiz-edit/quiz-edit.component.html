@@ -22,7 +22,7 @@
       </tbody>
     </table>
     <div class="nav nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-      <button *ngIf="editTest" class="btn btn-outline-success flex-sm-fill text-sm-center"
+      <button *ngIf="editTest" class="btn btn-outline-success flex-sm-fill text-sm-center" [disabled]="!testForm.valid"
         (click)="updateTest()">Update test</button>
         <button *ngIf="!editTest && !createTest" class="btn btn-outline-success flex-sm-fill text-sm-center" [disabled]="!testForm.valid"
         (click)="createTestName()">Create test</button>

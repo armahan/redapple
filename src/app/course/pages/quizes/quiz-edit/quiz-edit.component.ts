@@ -59,7 +59,7 @@ export class QuizEditComponent implements OnInit {
     })
   }
   updateQuiz(testId: number, testName: string, questions: Array<Question>) {
-    this.course.updateQuiz(testId, testName, questions).subscribe()
+    this.course.updateQuiz(testId, testName, questions).subscribe();
   }
   editEnable() {
     this.editTest = false
@@ -78,12 +78,13 @@ export class QuizEditComponent implements OnInit {
     })
   }
   addQuestion(question: any) {
+    let index = this.myQuestions.questions.indexOf(question)
     this.createdTest.questions.push(question)
-    this.myQuestions.questions.splice(question, 1)
+    this.myQuestions.questions.splice(index, 1)
   }
   removeQuestion(question: any) {
-    this.myQuestions.questions.push(question)
-    this.createdTest.questions.splice(question, 1)
+    let index = this.createdTest.questions.indexOf(question)
+    this.createdTest.questions.splice(index, 1)
   }
   editQuestion(val:number){
     this.questionId = val
@@ -95,5 +96,6 @@ export class QuizEditComponent implements OnInit {
 
   getNewQuestion($event) {
     this.createdTest.questions.push($event)
+    this.updateQuiz(this.createdTest.test_id, this.createdTest.test_name, this.createdTest.questions)
   }
 }
