@@ -21,7 +21,7 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('current_user'))
-    this.isLoggedIn = this.authService.isAuthenticated()
+    this.isLoggedIn = this.authService.isAuthenticated(localStorage.getItem('access_token'))
     //console.log(this.user.user_id)
     this.createForm()
     this.getUserId()

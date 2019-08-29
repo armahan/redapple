@@ -13,7 +13,6 @@ export class AuthInterceptorService implements HttpInterceptor {
   constructor(private authService: AuthService, private router: Router) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    console.log('Interceptor is working')
     if (!!this.authService.getToken()) {
       req = req.clone({
 				setHeaders: {

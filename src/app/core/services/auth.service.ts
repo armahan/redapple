@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import * as jwt_decode from 'jwt-decode';
 
 import { User } from '../models/user';
 
@@ -33,14 +34,14 @@ export class AuthService {
   }
 
   logOut() {
-    localStorage.removeItem('current_user')
     localStorage.removeItem('access_token')
     this.router.navigateByUrl('/home')    
   }
 
-  isAuthenticated(){
-    if(localStorage.getItem('current_user')){
-      return true
+  isAuthenticated(token){
+    var decoded = jwt_decode(token)
+    if(decoded){
+      return decoded
     }
     return false
   }
