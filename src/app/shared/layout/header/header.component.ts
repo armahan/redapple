@@ -10,11 +10,12 @@ import { AuthService } from 'src/app/core';
 })
 export class HeaderComponent implements OnInit {
   isLoggedIn: Boolean = false;
+  userName : string;
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
-    this.isLoggedIn = this.authService.isAuthenticated(localStorage.getItem('access_token'))
-    console.log(this.isLoggedIn)
+    this.isLoggedIn = this.authService.isAuthenticated()
+    this.userName = this.authService.getUsername()
   }
 
   logOut() {

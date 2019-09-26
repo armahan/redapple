@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 import { User } from '../models/user';
 
@@ -14,11 +13,11 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  getUser(userId: number): Observable<User> {
+  getUser(userId: number){
     return this.http.get<User>(this.redAppleUrl + 'user/' + userId);
   }
 
-  updateUser(userId: number, userName: string, email: string, password: string, authLevel: number): Observable<User> {
+  updateUser(userId: number, userName: string, email: string, password: string, authLevel: number){
     return this.http.put<User>(this.redAppleUrl + 'user/' + userId, {
       user_name: userName,
       email: email,

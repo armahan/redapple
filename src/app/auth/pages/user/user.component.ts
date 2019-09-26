@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import * as jwt_decode from 'jwt-decode';
 
 import { UserService, AuthService, User } from 'src/app/core';
 
@@ -20,12 +21,16 @@ export class UserComponent implements OnInit {
   
 
   ngOnInit() {
-    this.user = JSON.parse(localStorage.getItem('current_user'))
-    this.isLoggedIn = this.authService.isAuthenticated(localStorage.getItem('access_token'))
+    this.user = this.getToken(localStorage.getItem('access_token'))
+    this.isLoggedIn = this.authService.isAuthenticated()
     //console.log(this.user.user_id)
     this.createForm()
     this.getUserId()
     
+  }
+  getToken(token){
+    var decoded = jwt_decode(token)
+    return decoded['identity']
   }
   createForm(){
     this.updateForm = new FormGroup({
@@ -45,7 +50,7 @@ export class UserComponent implements OnInit {
   }
   getUserId():void{  
     this.userService.getUser(this.user.user_id).subscribe(responseData => {
-      this.setForm(responseData.user_name, responseData.email, this.defaultPassword, responseData.auth_level)
+      this.setForm(responseData.user_name, responseData.email, responseData.password, responseData.auth_level)
     });
   }
   onSubmit(){
