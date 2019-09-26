@@ -11,11 +11,15 @@ import { AuthService } from 'src/app/core';
 export class HeaderComponent implements OnInit {
   isLoggedIn: Boolean = false;
   userName : string;
+  userRole : string;
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
+   if(this.authService.getToken()){
     this.isLoggedIn = this.authService.isAuthenticated()
     this.userName = this.authService.getUsername()
+    this.userRole = this.authService.getUserType()
+   }
   }
 
   logOut() {

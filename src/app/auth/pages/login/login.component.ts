@@ -21,7 +21,9 @@ export class LoginComponent implements OnInit {
       email : new FormControl('',[Validators.required, Validators.minLength(4)]),
       password: new FormControl('',[Validators.required, Validators.minLength(4)])
     })
-    this.isLoggedIn = this.authService.isAuthenticated()
+    if(this.authService.getToken()){
+      this.isLoggedIn = this.authService.isAuthenticated()
+    }
   }
   
   onSubmit(){

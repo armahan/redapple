@@ -21,7 +21,7 @@ export class AuthInterceptorService implements HttpInterceptor {
   isRefreshingToken: boolean = false;
   tokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>(null);
   intercept(request: HttpRequest<any>, next: HttpHandler) : Observable<HttpSentEvent | HttpHeaderResponse | HttpProgressEvent | HttpResponse<any> | HttpUserEvent<any> | any> {
-    // if access token null
+    // if access token is null
     if(!this.authService.getToken()){
       return next.handle(request);
     }

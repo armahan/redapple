@@ -16,7 +16,6 @@ class RefreshResponse {
 })
 export class AuthService {
   private redAppleUrl = 'http://localhost:5000/'; //URL to web api.
-  private newRefreshToken : string;
   constructor(private httpService: HttpClient, private router: Router) { }
 
   register(userName: string, email: string, password: string, authLevel: number) {
@@ -83,6 +82,11 @@ export class AuthService {
     var token = this.getToken()
     var decoded = jwt_decode(token)
     return decoded.identity['user_name']
+  }
+  getUserType(){
+    var token = this.getToken()
+    var decoded = jwt_decode(token)
+    return decoded.user_claims['role']
   }
   getToken() {
     return localStorage.getItem('access_token')

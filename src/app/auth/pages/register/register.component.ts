@@ -27,7 +27,9 @@ export class RegisterComponent implements OnInit {
       validators: PasswordValidation.MatchPassword
     }
     );
-    this.isLoggedIn = this.authService.isAuthenticated()
+    if(this.authService.getToken()){
+      this.isLoggedIn = this.authService.isAuthenticated()
+    }
   }
   onSubmit() {
     this.authService.register(this.registerForm.value.userName, this.registerForm.value.email, this.registerForm.value.password, this.authLevel).subscribe(resdata=>{
