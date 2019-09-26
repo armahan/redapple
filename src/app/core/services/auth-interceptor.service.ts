@@ -25,8 +25,8 @@ export class AuthInterceptorService implements HttpInterceptor {
     if(!this.authService.getToken()){
       return next.handle(request);
     }
-    // sending the request only for the refresh token endpoint
-    if(request.url.endsWith('refresh')){
+    // sending the request only for the refresh token and the logout refresh token endpoints
+    if(request.url.endsWith('refresh') || request.url.endsWith('logout/refresh')){
       return next.handle(request);
     }
     return next.handle(this.addTokenToRequest(request, this.authService.getToken()))
