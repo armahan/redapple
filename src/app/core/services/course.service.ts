@@ -27,7 +27,7 @@ export class CourseService {
   getCourseByUserId() {
     return this.http.get<Courses>(this.redAppleUrl + 'games/user');
   }
-  
+
   getCourses() {
     return this.http.get<Courses>(this.redAppleUrl + 'games');
   }
@@ -37,6 +37,17 @@ export class CourseService {
       game_name: gameName,
       levels: levels
     });
+  }
+  // subscribeCourse function is subscribe to course
+  subscribeCourse(gameId: number){
+    return this.http.post<Course>(this.redAppleUrl + 'subscribe', {
+      game_id : gameId
+    });
+  }
+
+  // getSubscribedCourse returns user's subscribed courses
+  getSubscribedCourse(){
+    return this.http.get<Course>(this.redAppleUrl + 'subscribe/user');
   }
 
   deleteCourse(courseId: number) {
@@ -58,7 +69,7 @@ export class CourseService {
   updateSection(sectionId: number, sectionName: string, levelDescription, contents: Array<Contents>) {
     return this.http.put<Section>(this.redAppleUrl + 'level/' + sectionId, {
       level_name: sectionName,
-      level_description:levelDescription,
+      level_description: levelDescription,
       contents: contents
     });
   }
@@ -85,9 +96,9 @@ export class CourseService {
       content: content
     });
   }
-  updateContent(contentId:number,subjectId: number, contentName: string, content: string){
-    return this.http.put<Contents>(this.redAppleUrl + 'content/' + contentId,{
-      content : content,
+  updateContent(contentId: number, subjectId: number, contentName: string, content: string) {
+    return this.http.put<Contents>(this.redAppleUrl + 'content/' + contentId, {
+      content: content,
       content_name: contentName,
       subject_id: subjectId
     })
@@ -106,8 +117,8 @@ export class CourseService {
     });
   }
 
-  updateQuiz(quizId:number, quizName: string, questions: Array<Question>) {
-    return this.http.put<Contents>(this.redAppleUrl + 'test/'+ quizId, {
+  updateQuiz(quizId: number, quizName: string, questions: Array<Question>) {
+    return this.http.put<Contents>(this.redAppleUrl + 'test/' + quizId, {
       test_name: quizName,
       questions: questions
     });
@@ -116,29 +127,29 @@ export class CourseService {
   getQuiz(quizId: number) {
     return this.http.get<Contents>(this.redAppleUrl + 'test/' + quizId);
   }
-  createQuestion(qcode: string, qsubjectId: number, qquest: string, optionsArray: Array<Option>){
+  createQuestion(qcode: string, qsubjectId: number, qquest: string, optionsArray: Array<Option>) {
     return this.http.post<Question>(this.redAppleUrl + 'question/create', {
-      code : qcode,
+      code: qcode,
       subject_id: qsubjectId,
       question: qquest,
       options: optionsArray
     });
   }
-  updateQuestion(quId:number, qcode: string, qsubjectId: number, qquest: string, optionsArray: Array<Option>){
+  updateQuestion(quId: number, qcode: string, qsubjectId: number, qquest: string, optionsArray: Array<Option>) {
     return this.http.put<Question>(this.redAppleUrl + 'question/' + quId, {
-      code : qcode,
+      code: qcode,
       subject_id: qsubjectId,
       question: qquest,
       options: optionsArray
     });
   }
-  getQuestion(quId:number){
-    return this.http.get<Question>(this.redAppleUrl+'question/'+ quId);
+  getQuestion(quId: number) {
+    return this.http.get<Question>(this.redAppleUrl + 'question/' + quId);
   }
-  getAllQuestions(){
-    return this.http.get<Questions>(this.redAppleUrl+'questions');
+  getAllQuestions() {
+    return this.http.get<Questions>(this.redAppleUrl + 'questions');
   }
-  getUserQuestions(){
-    return this.http.get<Questions>(this.redAppleUrl+'questions/user');
+  getUserQuestions() {
+    return this.http.get<Questions>(this.redAppleUrl + 'questions/user');
   }
 }

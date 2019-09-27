@@ -11,19 +11,26 @@ import { CourseService, Course } from '../../core';
 export class CourseDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private course: CourseService) { }
-  id : number;
+  gameId : number;
   sectionContent:Course;
   
   ngOnInit() {
     this.route.paramMap.subscribe((params:ParamMap)=>{
-      this.id = Number(params.get('id'))
+      this.gameId = Number(params.get('id'))
     });
-    this.getSections(this.id)
+    this.getSections(this.gameId)
+    console.log(this.gameId)
   }
 
   getSections(game_id:number){
     this.course.getCourse(game_id).subscribe(responseData=>{
       this.sectionContent = responseData
+    });
+  }
+
+  courseSubscribe(gameId:number){
+    this.course.subscribeCourse(gameId).subscribe(responseData=>{
+      console.log(responseData)
     });
   }
 }
