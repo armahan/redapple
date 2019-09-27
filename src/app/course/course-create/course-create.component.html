@@ -1,10 +1,17 @@
 <div class="container-fluid">
   <div class="row">
     <nav class="col-md-2 sidebar" style="padding: 15px">
-      <app-course-side-bar></app-course-side-bar>
     </nav>
-    <div class="col-md-10" style="padding: 15px">
-      <div class="col-8" *ngIf="createNew">
+    <div class="col-md-8" style="padding: 15px">
+        <div style="padding: 15px">
+      <div class="nav nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <button class="btn btn-outline-primary flex-sm-fill text-sm-center" (click)="createForm()">Create Course</button>
+        <button class="btn btn-outline-success flex-sm-fill text-sm-center">Get All Courses</button>
+        <button class="btn btn-outline-success flex-sm-fill text-sm-center">Get All Contents</button>
+        <button class="btn btn-outline-success flex-sm-fill text-sm-center">Get All Classes</button>
+      </div>
+    </div>
+      <div class="col-8" style="padding: 15px" *ngIf="createNew">
         <form class="form-signin" [formGroup]="createCourseForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
             <label for="exampleFormControlInput1">Course Name</label>
@@ -18,18 +25,6 @@
             Course</button>
         </form>
       </div>
-
-      <div class="row" *ngIf="!createNew || !getLoadCourse">
-        <h1 class="display-4">Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a
-          jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.
-        </p>
-        <div class="create">
-          <button type="button" class="btn btn-outline-primary" (click)="createForm()">Create Course</button>
-        </div>
-        <hr>
-      </div>
-
       <div class="row" *ngIf="getLoadCourse && !createNew">
         <div class="col-lg-4" *ngFor="let crs of getLoadCourse.games">
           <div class="card mb-3">
@@ -38,7 +33,8 @@
                 <h4 class="card-title">{{crs.game_name}}</h4>
                 <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
                 <p class="card-text">{{crs.game_description}}</p>
-                <button type="button" class="btn btn-outline-success" (click)="goCourseEdit(crs.game_id)">Edit course</button>
+                <button type="button" class="btn btn-outline-success" (click)="goCourseEdit(crs.game_id)">Edit
+                  course</button>
                 <button type="button" class="btn btn-outline-danger" (click)="deleteCourse(crs.game_id)">Delete
                   course</button>
               </div>
