@@ -12,9 +12,14 @@ import { CourseService, Courses } from '../core';
 })
 export class CourseComponent implements OnInit {
 
-  constructor(private course: CourseService, private router: Router) { }
+  constructor(
+    private course: CourseService, 
+    private router: Router
+    ) { }
+
   courseContent: Courses;
   gameId :number;
+
   ngOnInit() {
     this.getCourses()
   }
@@ -28,8 +33,6 @@ export class CourseComponent implements OnInit {
   }
 
   public gotoProductDetails(url, id) {
-    this.router.navigate([url, id]).then( (e) => {
-
-    });
+    this.router.navigate([url, id]).then( (e) => {});
 }
 }

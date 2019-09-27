@@ -47,7 +47,7 @@ export class CourseService {
 
   // getSubscribedCourse returns user's subscribed courses
   getSubscribedCourse(){
-    return this.http.get<Course>(this.redAppleUrl + 'subscribe/user');
+    return this.http.get<Courses>(this.redAppleUrl + 'subscribe/user');
   }
 
   deleteCourse(courseId: number) {

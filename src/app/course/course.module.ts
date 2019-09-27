@@ -19,6 +19,7 @@ import {
     QuestionEditComponent
 } from './pages';
 import { CourseComponent } from './course.component';
+import { MyCourseComponent } from './my-course/my-course.component';
 import { CourseDetailComponent } from './course-detail/course-detail.component';
 import { CourseCreateComponent } from './course-create/course-create.component';
 import { CourseSideBarComponent } from './course-side-bar/course-side-bar.component';
@@ -60,7 +61,9 @@ import { QuestionsComponent } from './pages/quizes/questions/questions.component
             }
         })
     ],
-    declarations: [CourseComponent,
+    declarations: [
+        CourseComponent,
+        MyCourseComponent,
         CourseDetailComponent,
         CourseCreateComponent,
         CourseSideBarComponent,
@@ -74,7 +77,9 @@ import { QuestionsComponent } from './pages/quizes/questions/questions.component
         QuestionsComponent,
         QuestionComponent,
         QuestionEditComponent],
-    exports: [CourseComponent,
+    exports: [
+        CourseComponent,
+        MyCourseComponent,
         CourseDetailComponent,
         CourseCreateComponent,
         CourseSideBarComponent,
