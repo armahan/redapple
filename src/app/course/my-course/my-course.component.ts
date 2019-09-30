@@ -28,4 +28,7 @@ export class MyCourseComponent implements OnInit {
     })
   }
 
+  public gotoCourseDetails(url, id) {
+    this.router.navigate([url, id]).then( (e) => {});
+}
 }

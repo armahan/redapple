@@ -1,27 +1,19 @@
 <div class="container">
-    <div class="row" *ngIf="myCourseContent" >     
-            <div class="col-lg-4"  *ngFor="let crs of myCourseContent.games" >
-                <div class="card mb-3">
-                    <h3 class="card-header">{{crs.game_name}}</h3>
-                    <div class="card-body">
-                        <h5 class="card-title">{{crs.game_name}}</h5>
-                        <h6 class="card-subtitle text-muted">Support card subtitle</h6>
-                    </div>
-                    <img style="height: 200px; width: 100%; display: block;"
-                        src="https://www.jagranjosh.com/imported/images/E/Articles/maths2.jpg"
-                        alt="Card image">
-                    <div class="card-body">
-                        <p class="card-text">{{crs.game_description}}</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Cras justo odio</li>
-                    </ul>
-                    <div class="card-body">
-                        <button type="button" class="btn btn-outline-primary" (click)="gotoProductDetails('/course',crs.game_id)">Go to course</button>
-                    </div>
-                    <div class="card-footer text-muted">
-                        2 days ago
-                    </div>
+    <div class="row" *ngIf="myCourseContent">
+        <div class="col-lg-4" *ngFor="let crs of myCourseContent.games">
+            <div class="card mb-3">
+                <h3 class="card-header">{{crs.game_name}}</h3>
+                <div class="card-body">
+                    <h5 class="card-title">{{crs.game_name}}</h5>
+                    <h6 class="card-subtitle text-muted">Support card subtitle</h6>
                 </div>
-                
+                <img style="height: 200px; width: 100%; display: block;"
+                    src="https://www.jagranjosh.com/imported/images/E/Articles/maths2.jpg" alt="Card image">
+                <div class="card-body">
+                    <p class="card-text">{{crs.game_description}}</p>
+                </div>
+                <div class="card-body">
+                    <button type="button" class="btn btn-outline-primary"
+                        (click)="gotoCourseDetails('/section',crs.game_id)">Launch to course</button>
+                </div>
             </div>
