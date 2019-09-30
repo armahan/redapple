@@ -1,6 +1,7 @@
 <div class="container" *ngIf="content">
-    <h5>{{content.content_name}}</h5>
+    <h5><quill-view-html [content]="content.content_name"></quill-view-html></h5>
+    
     <p>
-        {{content.content}}
+        <quill-view-html [content]="content.content"></quill-view-html>
     </p>
   </div>

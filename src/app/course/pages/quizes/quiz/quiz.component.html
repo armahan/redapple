@@ -1,14 +1,14 @@
 <div class="container" *ngIf="test">
-  <h5>{{test.test_name}}</h5>
+  <h5><quill-view-html [content]="test.test_name"></quill-view-html></h5>
   <div class="row">
     <div class="col" *ngFor="let question of test.questions; let i=index">
       <div class="form-check">
-        <p>{{question.question}}</p>
+        <p><quill-view-html [content]="question.question"></quill-view-html></p>
         <ul class="list-group">
           <li class="list-group-item" *ngFor="let answer of question.options">
             <input class="form-check-input" type="radio" name="{{question.question_id}}" [id]="i"
               value="{{answer.is_true}}" (change)="selectedAnswer($event)">
-            {{answer.answer}}
+              <quill-view-html [content]="answer.answer"></quill-view-html>
           </li>
         </ul>
       </div>
@@ -16,8 +16,8 @@
   </div>
   <div class="row" *ngIf="resultActive">
       <hr>
-      <p>Number of question : {{testLenght}}</p>
-      <p>True answer : {{trueAnswers}}</p>
+      <p>Number of question : <quill-view-html [content]="testLenght"></quill-view-html></p>
+      <p>True answer : <quill-view-html [content]="trueAnswers"></quill-view-html></p>
     </div>
   <hr>
   <button class="btn btn-primary btn-lg" [disabled]="resultActive" (click)="testResult();">Result</button>
