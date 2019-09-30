@@ -1,7 +1,6 @@
 <div class="container-fluid">
   <div class="row " *ngIf="courseContent">
-
-    <nav class="col-md-2 sidebar" style="padding: 15px">
+    <nav class="col-md-2 sidebar bg-dark" style="padding: 15px" >
       <div class="panel-group">
         <div class="panel" *ngFor="let section of courseContent.levels">
           <div class="panel-heading">
@@ -14,7 +13,7 @@
           <div id="collapse{{section.level_id}}" class="panel-collapse collapse" *ngIf="sectionContent">
             <ul class="list-group" *ngFor="let content of sectionContent.contents">
 
-              <a class="list-group-item list-group-item-action" *ngIf="content.content_name"
+              <a class="list-group-item list-group-item-action " *ngIf="content.content_name"
                 (click)="goToContent(content.content_id)">Content Name: {{content.content_name}}</a>
               <a class="list-group-item list-group-item-action" *ngIf="content.test_name"
                 (click)="goToTest(content.test_id)">Test Name: {{content.test_name}}</a>
