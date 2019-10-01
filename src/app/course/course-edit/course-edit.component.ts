@@ -48,15 +48,15 @@ export class CourseEditComponent implements OnInit {
         this.createdSection.level_description = this.sectionForm.value.description
         this.createdSection.weight = weight
         this.sectionContent.levels.push(this.createdSection)
-        this.course.updateCourse(this.id, this.sectionContent.game_name, this.sectionContent.levels).subscribe()
+        this.course.updateCourse(this.id, this.sectionContent.game_name, this.sectionContent.levels).subscribe();
+        window.location.reload();
       }
     })
   }
  
   deleteLevel(levelId:number){
-    this.course.deleteSection(levelId).subscribe((responseData)=>{
-      console.log(responseData)
-    })
+    this.course.deleteSection(levelId).subscribe();
+    window.location.reload();
   }
   editLevel(id){
       this.router.navigate(['/section-edit', id]).then( (e) => {
@@ -75,6 +75,7 @@ export class CourseEditComponent implements OnInit {
   onSubmit() {
     this.createSection(this.sectionForm.value.sectionName, this.sectionForm.value.description, null, this.sectionForm.value.weight)
     //console.log(this.sectionForm.value.weight)
-    this.sectionForm.reset()
+    this.sectionForm.reset();
+    
   }
 }

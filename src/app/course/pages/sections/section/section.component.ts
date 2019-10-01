@@ -30,14 +30,12 @@ export class SectionComponent implements OnInit {
   getCourseContent(game_id:number){
     this.courseSection.getCourse(game_id).subscribe(responseData=>{
       this.courseContent = responseData
-      console.log(this.courseContent)
     });
   }
 
   getSectionContent(section_id:number){
     this.courseSection.getSection(section_id).subscribe(responseData=>{
       this.sectionContent = responseData
-      console.log(this.sectionContent)
     });
   }
   gotoSectionDetails(section_id:number){

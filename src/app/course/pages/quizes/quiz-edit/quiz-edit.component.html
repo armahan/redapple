@@ -17,7 +17,7 @@
           <td ><quill-view-html [content]="qst.code"></quill-view-html></td>
           <td ><quill-view-html [content]="qst.question"></quill-view-html></td>
           <td><button type="button" class="btn btn-warning btn-sm" (click)="removeQuestion(qst)">remove</button></td>
-          <td><button type="button" class="btn btn-success btn-sm">edit</button></td>
+          <td><button type="button" class="btn btn-success btn-sm" (click)="editQuestion(qst.question_id)">edit</button></td>
         </tr>
       </tbody>
     </table>

@@ -17,13 +17,11 @@ export class ContentComponent implements OnChanges {
   ngOnChanges(){
     if (this.contentId){
       this.getContent(this.contentId)
-      console.log(this.contentId)
     }
   }
   getContent(contentId:number){
     this.courseContent.getContent(contentId).subscribe((responseData)=>{
       this.content = responseData
-      console.log(responseData)
     });
   }
 }
