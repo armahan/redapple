@@ -7,7 +7,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { SharedModule } from './shared';
 import { AuthModule } from './auth';
-import { CoreModule, AuthInterceptorService } from './core';
+import { CoreModule, AuthInterceptorService, HttpErrorInterceptor } from './core';
 import { CourseModule } from './course';
 
 

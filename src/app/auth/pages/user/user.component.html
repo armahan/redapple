@@ -4,11 +4,12 @@
   <input type="userName" id="userName" class="form-control" placeholder="User name" formControlName="userName">
   <label for="inputEmail" class="sr-only">Email address</label>
   <input type="eMail" id="inputEmail" class="form-control" placeholder="Email address" formControlName="email">
+  <br>
   <label for="inputPassword" class="sr-only">Password</label>
   <input type="password" id="inputPassword" class="form-control" placeholder="Password" formControlName="password">
   <br>
   <label for="authLevel" class="sr-only">Account type</label>
-  <input type="authLevel" id="authLevel" class="form-control" placeholder="Account type" formControlName="authLevel">
+  <input type="authLevel" id="authLevel" class="form-control" [disabled]="" placeholder="Account type" formControlName="authLevel">
   <br>
   <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!updateForm.valid">Update</button>
 </form>

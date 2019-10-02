@@ -15,7 +15,6 @@ export class UserComponent implements OnInit {
   updateForm: FormGroup;
   isLoggedIn: Boolean = false;
   user : User;
-  defaultPassword: string = 'q1w2e3';
 
   constructor(private userService: UserService, private authService: AuthService) {  }
   
@@ -23,7 +22,6 @@ export class UserComponent implements OnInit {
   ngOnInit() {
     this.user = this.getToken(localStorage.getItem('access_token'))
     this.isLoggedIn = this.authService.isAuthenticated()
-    //console.log(this.user.user_id)
     this.createForm()
     this.getUserId()
     
