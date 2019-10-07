@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
-import { Course, Section, Subject, Content, Test, Question, Courses, Contents, Option } from '../models';
+import { Course, Section, Subject, Content, Question, Courses, Contents, Option } from '../models';
 import { Questions } from '../models/questions';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CourseService {
-  private redAppleUrl = 'http://localhost:5000/'; //URL to web api. 
+  private redAppleUrl = 'http://localhost:5000/api/v0.1/'; //URL to web api. 
 
   constructor(private http: HttpClient, private router: Router) { }
 

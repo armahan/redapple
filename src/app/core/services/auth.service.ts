@@ -15,7 +15,7 @@ class RefreshResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  private redAppleUrl = 'http://localhost:5000/'; //URL to web api.
+  private redAppleUrl = 'http://localhost:5000/api/v0.1/'; //URL to web api.
   constructor(private httpService: HttpClient, private router: Router) { }
 
   register(userName: string, email: string, password: string, authLevel: number) {

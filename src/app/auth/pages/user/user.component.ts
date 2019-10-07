@@ -22,6 +22,7 @@ export class UserComponent implements OnInit {
   ngOnInit() {
     this.user = this.getToken(localStorage.getItem('access_token'))
     this.isLoggedIn = this.authService.isAuthenticated()
+    //console.log(jwt_decode(localStorage.getItem('access_time')))
     this.createForm()
     this.getUserId()
     

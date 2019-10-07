@@ -67,13 +67,17 @@ export class SectionEditComponent implements OnInit {
   editEnable() {
     this.editLevel = !this.editLevel
     this.updateSection = !this.updateSection
+    this.activeTest = false
+    this.activeContent = false
     this.setForm(this.section.level_name, this.section.level_description)
   }
   createContent() {
     this.activeContent = !this.activeContent
+    this.activeTest = false
   }
   createTest() {
     this.activeTest = !this.activeTest
+    this.activeContent = false
   }
 
   editContent(id: number) {
