@@ -9,6 +9,7 @@ import { SharedModule } from './shared';
 import { AuthModule } from './auth';
 import { CoreModule, AuthInterceptorService } from './core';
 import { CourseModule } from './course';
+import { AdminModule } from './admin';
 
 
 
@@ -22,6 +23,7 @@ import { CourseModule } from './course';
     AuthModule,
     SharedModule,
     CoreModule,
+    AdminModule,
     CourseModule
   ],
   providers: [
