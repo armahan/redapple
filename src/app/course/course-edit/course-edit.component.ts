@@ -48,12 +48,13 @@ export class CourseEditComponent implements OnInit {
         this.createdSection.level_description = this.sectionForm.value.description
         this.createdSection.weight = weight
         this.sectionContent.levels.push(this.createdSection)
-        this.course.updateCourse(this.id, this.sectionContent.game_name, this.sectionContent.levels).subscribe();
-        window.location.reload();
       }
     })
+    this.course.updateCourse(this.id, this.sectionContent.game_name, this.sectionContent.levels).subscribe();
   }
- 
+  updatePage(){
+    window.location.reload();
+  }
   deleteLevel(levelId:number){
     this.course.deleteSection(levelId).subscribe();
     window.location.reload();
