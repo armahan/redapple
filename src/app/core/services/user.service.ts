@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { User } from '../models/user';
+import { Users, User } from '../models';
 
 
 @Injectable({
@@ -24,5 +24,9 @@ export class UserService {
       password: password,
       auth_level: authLevel
     });
+  }
+
+  getUsers(){
+    return this.http.get<Users>(this.redAppleUrl + 'users');
   }
 }

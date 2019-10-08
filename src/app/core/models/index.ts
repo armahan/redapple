@@ -1,4 +1,5 @@
 export * from './user';
+export * from './users';
 export * from './subject';
 export * from './content';
 export * from './question';
