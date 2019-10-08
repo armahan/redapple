@@ -37,6 +37,7 @@ export class AuthService {
     this.removeToken();
     this.removeRefreshToken();
     this.router.navigate(['/login']);
+    window.location.reload();
   }
 
   isAuthenticated(): boolean {

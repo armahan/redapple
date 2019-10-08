@@ -22,10 +22,13 @@
         <a class="nav-link" *ngIf="!isLoggedIn" routerLink="/login">Login</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="course-create" *ngIf="isLoggedIn">Dashboard</a>
+        <a class="nav-link" routerLink="course-create" *ngIf="isLoggedIn && userRole == 'teacher'">Dashboard</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/my-courses" *ngIf="isLoggedIn">My Courses</a>
+        <a class="nav-link" routerLink="admin" *ngIf="isLoggedIn && userRole == 'admin'">Administration</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/my-courses" *ngIf="isLoggedIn && userRole != 'admin'">My Courses</a>
       </li>
       <li class="nav-item dropdown" *ngIf="isLoggedIn">
         <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
