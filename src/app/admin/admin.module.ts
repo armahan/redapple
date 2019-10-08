@@ -7,6 +7,7 @@ import { QuillModule } from 'ngx-quill';
 import { AdminComponent } from './admin.component';
 import { AdminRoutingModule } from './admin-routing.module';
 import { CoreModule } from '../core';
+import { UsersComponent, CoursesComponent } from './page';
 
 @NgModule({
   imports: [
@@ -39,7 +40,15 @@ import { CoreModule } from '../core';
       }
   })
   ],
-  declarations: [AdminComponent],
-  exports:[AdminComponent]
+  declarations: [
+    AdminComponent,
+    UsersComponent,
+    CoursesComponent
+  ],
+  exports:[
+    AdminComponent,
+    UsersComponent,
+    CoursesComponent
+  ]
 })
 export class AdminModule { }
