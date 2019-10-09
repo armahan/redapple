@@ -25,8 +25,6 @@ import { CourseCreateComponent } from './course-create/course-create.component';
 import { CourseSideBarComponent } from './course-side-bar/course-side-bar.component';
 import { CourseEditComponent } from './course-edit/course-edit.component';
 import { QuestionsComponent } from './pages/quizes/questions/questions.component';
-import { SubjectsComponent } from './subjects/subjects.component';
-import { SubjectComponent, SubjectEditComponent } from './subjects';
 
 
 
@@ -70,9 +68,6 @@ import { SubjectComponent, SubjectEditComponent } from './subjects';
         CourseCreateComponent,
         CourseSideBarComponent,
         CourseEditComponent,
-        SubjectsComponent,
-        SubjectComponent,
-        SubjectEditComponent,
         ContentComponent,
         ContentEditComponent,
         SectionComponent,
@@ -89,9 +84,6 @@ import { SubjectComponent, SubjectEditComponent } from './subjects';
         CourseCreateComponent,
         CourseSideBarComponent,
         CourseEditComponent,
-        SubjectsComponent,
-        SubjectComponent,
-        SubjectEditComponent,
         ContentComponent,
         ContentEditComponent,
         SectionComponent,

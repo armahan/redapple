@@ -2,6 +2,32 @@
     <div class="row">
       <app-admin-nav class="sidebar"></app-admin-nav>
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <div class="row">
+          <div class="col-4" style="padding: 15px"> 
+          <form class="form-signin" [formGroup]="subjectForm" (ngSubmit)="onSubmit()">
+              <div class="form-group">
+                <label for="subjectFormControl">Subject</label>
+                <input type="text" class="form-control" formControlName="subjectName" placeholder="Subject">
+              </div>
+              <button type="submit" class="btn btn-outline-primary" [disabled]="!subjectForm.valid">Save
+                Subject</button>
+            </form>
+          </div>
+          <div class="col-4">
+              <table class="table" *ngIf="subjects">
+                  <thead>
+                    <tr>
+                      <th scope="col">Subject</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let subject of subjects.subjects" >
+                      <td>{{subject.subject_name}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+          </div>
+        </div>
       </main>
     </div>
   </div>

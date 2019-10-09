@@ -1,6 +1,7 @@
 export * from './user';
 export * from './users';
 export * from './subject';
+export * from './subjects';
 export * from './content';
 export * from './question';
 export * from './questions';
