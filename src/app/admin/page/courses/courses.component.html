@@ -2,6 +2,24 @@
     <div class="row">
       <app-admin-nav class="sidebar"></app-admin-nav>
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <div class="col-md-8">
+          <table class="table" *ngIf="courseContent">
+              <thead>
+                <tr>
+                  <th scope="col">Course</th>
+                  <th scope="col">Course description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let course of courseContent.games">
+                  <td>{{course.game_name}}</td>
+                  <td>{{course.game_description}}</td>
+                  <td><button class="btn btn-primary btn-sm"> Publish</button></td>
+                  <td><button class="btn btn-danger btn-sm"> Unpublish</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
       </main>
     </div>
   </div>
