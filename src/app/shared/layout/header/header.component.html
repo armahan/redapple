@@ -22,7 +22,7 @@
         <a class="nav-link" *ngIf="!isLoggedIn" routerLink="/login">Login</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="course-create" *ngIf="isLoggedIn && userRole == 'teacher'">Dashboard</a>
+        <a class="nav-link" routerLink="course-create" *ngIf="isLoggedIn && userRole == 'teacher' || userRole == 'admin'">Dashboard</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="admin" *ngIf="isLoggedIn && userRole == 'admin'">Administration</a>
