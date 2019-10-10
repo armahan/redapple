@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
-import { CourseService, Course } from '../../core';
+import { CourseService, Course, AuthService } from '../../core';
 
 @Component({
   selector: 'app-course-detail',
@@ -10,16 +10,26 @@ import { CourseService, Course } from '../../core';
 })
 export class CourseDetailComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private course: CourseService) { }
+  constructor(
+    private route: ActivatedRoute, 
+    private course: CourseService,
+    private authService: AuthService,
+    private router: Router
+    ) { }
   gameId : number;
   sectionContent:Course;
   
   ngOnInit() {
-    this.route.paramMap.subscribe((params:ParamMap)=>{
-      this.gameId = Number(params.get('id'))
-    });
-    this.getSections(this.gameId)
-    console.log(this.gameId)
+    if(this.authService.getToken()){
+      this.route.paramMap.subscribe((params:ParamMap)=>{
+        this.gameId = Number(params.get('id'))
+      });
+      this.getSections(this.gameId)
+      console.log(this.gameId)
+    }else{
+      this.router.navigate(['/login']);
+    }
+    
   }
 
   getSections(game_id:number){
