@@ -9,7 +9,7 @@
                     <th scope="col">Name</th>
                     <th scope="col">E-Mail</th>
                     <th scope="col">Authority</th>
-                    <th scope="col">Authority</th>
+                    <th scope="col">Change Authority</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -19,10 +19,10 @@
                     <td *ngSwitchCase="1">Admin</td>
                     <td *ngSwitchCase="2">Teacher</td>
                     <td *ngSwitchDefault >Student</td>
-                    <td><select class="form-control form-control-sm">
-                        <option>None</option>
-                        <option [value]="1" >Admin</option>
-                        <option [value]="2">Teacher</option>
+                    <td><select class="form-control form-control-sm" [disabled]="user.auth_level == 1">
+                        <option [value]="1" [selected]="user.auth_level == 1" >Admin</option>
+                        <option [value]="2" [selected]="user.auth_level == 2">Teacher</option>
+                        <option [value]="3" [selected]="user.auth_level == 3">Student</option>
                       </select>
                    </td>
                   </tr>

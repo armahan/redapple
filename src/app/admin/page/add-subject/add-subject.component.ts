@@ -32,5 +32,6 @@ export class AddSubjectComponent implements OnInit {
   onSubmit(){
     this.course.createSubject(this.subjectForm.value.subjectName, null).subscribe();
     this.subjectForm.reset()
+    window.location.reload();
   }
 }

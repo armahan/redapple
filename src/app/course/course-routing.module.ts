@@ -12,7 +12,7 @@ import { MyCourseComponent } from './my-course/my-course.component';
 const routes: Routes = [
   { path: 'courses', component: CourseComponent },
   { path: 'my-courses', component: MyCourseComponent, canActivate: [AuthGuard] },
-  { path: 'course/:id', component: CourseDetailComponent},
+  { path: 'course/:id', component: CourseDetailComponent, canActivate: [AuthGuard]},
   { path: 'course-create', component: CourseCreateComponent, canActivate: [AuthGuard] },
   { path: 'course-edit/:id', component: CourseEditComponent, canActivate: [AuthGuard] },
   { path: 'section/:id', component: SectionComponent, canActivate: [AuthGuard] },
