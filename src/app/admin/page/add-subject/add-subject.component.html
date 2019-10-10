@@ -6,8 +6,7 @@
           <div class="col-4" style="padding: 15px"> 
           <form class="form-signin" [formGroup]="subjectForm" (ngSubmit)="onSubmit()">
               <div class="form-group">
-                <label for="subjectFormControl">Subject</label>
-                <input type="text" class="form-control" formControlName="subjectName" placeholder="Subject">
+                <input type="text" class="form-control" formControlName="subjectName" placeholder="Add a subject">
               </div>
               <button type="submit" class="btn btn-outline-primary" [disabled]="!subjectForm.valid">Save
                 Subject</button>
@@ -17,7 +16,7 @@
               <table class="table" *ngIf="subjects">
                   <thead>
                     <tr>
-                      <th scope="col">Subject</th>
+                      <th scope="col">Subjects</th>
                     </tr>
                   </thead>
                   <tbody>
