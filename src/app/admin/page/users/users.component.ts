@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { UserService, Users, AuthService } from 'src/app/core';
+import { UserService, Users, AuthService, User } from 'src/app/core';
 
 @Component({
   selector: 'app-users',
@@ -9,8 +9,7 @@ import { UserService, Users, AuthService } from 'src/app/core';
 })
 export class UsersComponent implements OnInit {
 
-  constructor(private userService: UserService, private authService: AuthService ) { }
-
+  constructor(private userService: UserService, private authService: AuthService) { }
   userList : Users;
 
   ngOnInit() {
