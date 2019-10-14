@@ -27,7 +27,7 @@
         <button *ngIf="!editTest && !createTest" class="btn btn-outline-success flex-sm-fill text-sm-center" [disabled]="!testForm.valid"
         (click)="createTestName()">Create test</button>
       <button *ngIf="editTest" class="btn btn-outline-primary flex-sm-fill text-sm-center" (click)="createQuestion()">Add new question</button>
-      <button *ngIf="editTest" class="btn btn-outline-primary flex-sm-fill text-sm-center" (click)="Questions()">Show questions</button>
+      <button *ngIf="editTest" class="btn btn-outline-primary flex-sm-fill text-sm-center" (click)="allQuestions()">Show questions</button>
     </div>
     <table *ngIf="myQuestions && editTest" class="table table-striped">
       <thead>

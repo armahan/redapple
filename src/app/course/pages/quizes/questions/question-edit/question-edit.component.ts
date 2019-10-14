@@ -36,11 +36,10 @@ export class QuestionEditComponent implements OnInit {
       this.question = responseData
       this.sendQuestion.emit(this.question)
     })
+    window.location.reload();
   }
   updateQuestion(){
-    this.course.updateQuestion(this.questionId, this.questionForm.value.questionCode, this.questionForm.value.subject, this.questionForm.value.question, this.questionForm.value.options).subscribe((responseData)=>{
-       console.log(responseData)
-    })
+    this.course.updateQuestion(this.questionId, this.questionForm.value.questionCode, this.questionForm.value.subject, this.questionForm.value.question, this.questionForm.value.options).subscribe();
   }
   createQuestionForm(){
     this.questionForm= this.fb.group({

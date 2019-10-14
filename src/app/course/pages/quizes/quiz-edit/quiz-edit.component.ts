@@ -32,9 +32,15 @@ export class QuizEditComponent implements OnInit {
       this.editTest = true
       this.getTest(this.test_id)
     }
+  }
+  allQuestions(){
     this.course.getUserQuestions().subscribe((responseData) => {
       this.myQuestions = responseData
-      console.log(this.myQuestions)
+      if(this.createdTest.questions){
+        for (let quest of this.createdTest.questions){
+          this.mergeQuestions(quest)
+        }
+      }
     })
   }
   createTestName() {
@@ -42,7 +48,6 @@ export class QuizEditComponent implements OnInit {
     this.editTest = true
   }
   updateTest() {
-    console.log(this.createdTest)
     if(this.testForm.valid){
       this.updateQuiz(this.createdTest.test_id, this.testForm.value.testName, this.createdTest.questions)
     }else{
@@ -85,6 +90,10 @@ export class QuizEditComponent implements OnInit {
   removeQuestion(question: any) {
     let index = this.createdTest.questions.indexOf(question)
     this.createdTest.questions.splice(index, 1)
+  }
+  mergeQuestions(question: any) {
+    let index = this.myQuestions.questions.indexOf(question)
+    this.myQuestions.questions.splice(question, 1)
   }
   editQuestion(val:number){
     this.questionId = val
