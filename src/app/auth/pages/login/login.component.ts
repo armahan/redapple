@@ -17,13 +17,13 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
+    if(this.authService.getToken()){
+      this.isLoggedIn = this.authService.isAuthenticated()
+    }
     this.loginForm = new FormGroup({
       email : new FormControl('',[Validators.required, Validators.minLength(4)]),
       password: new FormControl('',[Validators.required, Validators.minLength(4)])
     })
-    if(this.authService.getToken()){
-      this.isLoggedIn = this.authService.isAuthenticated()
-    }
   }
   
   onSubmit(){

@@ -17,7 +17,7 @@ export class UserService {
     return this.http.get<User>(this.redAppleUrl + 'user/' + userId);
   }
 
-  updateUser(userId: number, userName: string, email: string, password: string, authLevel: number){
+  updateUser(userId: number, userName: string, email: string, authLevel: number, password?: string){
     return this.http.put<User>(this.redAppleUrl + 'user/' + userId, {
       user_name: userName,
       email: email,

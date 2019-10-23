@@ -37,7 +37,6 @@ export class AuthService {
     this.removeToken();
     this.removeRefreshToken();
     this.router.navigate(['/login']);
-    window.location.reload();
   }
 
   isAuthenticated(): boolean {
@@ -77,6 +76,11 @@ export class AuthService {
       })
     );
 
+  }
+  getUser() {
+    var token = this.getToken()
+    var decoded = jwt_decode(token)
+    return decoded.identity
   }
 
   getUsername() {

@@ -19,7 +19,7 @@
                     <td *ngSwitchCase="1">Admin</td>
                     <td *ngSwitchCase="2">Teacher</td>
                     <td *ngSwitchDefault >Student</td>
-                    <td><select class="form-control form-control-sm" [disabled]="user.auth_level == 1">
+                    <td><select class="form-control form-control-sm" [disabled]="user.user_id == loggedUser.user_id" (change)="changeAuthority(user,$event.target.value)">
                         <option [value]="1" [selected]="user.auth_level == 1" >Admin</option>
                         <option [value]="2" [selected]="user.auth_level == 2">Teacher</option>
                         <option [value]="3" [selected]="user.auth_level == 3">Student</option>
