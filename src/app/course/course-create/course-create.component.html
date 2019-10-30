@@ -56,7 +56,6 @@
       <div style="padding: 15px">
       <div class="nav nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
         <button class="btn btn-outline-primary flex-sm-fill text-sm-center" (click)="createForm()">Create Course</button>
-        <button class="btn btn-outline-success flex-sm-fill text-sm-center">Get All Courses</button>
       </div>
     </div>
       <div class="col-8" style="padding: 15px" *ngIf="createNew">
@@ -74,22 +73,26 @@
         </form>
       </div>
       <div class="row" *ngIf="getLoadCourse && !createNew">
-        <div class="col-lg-4" *ngFor="let crs of getLoadCourse.games">
-          <div class="card mb-3">
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title">{{crs.game_name}}</h4>
-                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                <p class="card-text">{{crs.game_description}}</p>
-                <button type="button" class="btn btn-outline-success" (click)="goCourseEdit(crs.game_id)">Edit
-                  course</button>
-                <button type="button" class="btn btn-outline-danger" (click)="deleteCourse(crs.game_id)">Delete
-                  course</button>
-              </div>
-            </div>
-
-          </div>
-        </div>
+          <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Course name</th>
+                  <th scope="col">Course description</th>
+                  <th scope="col">Course edit</th>
+                  <th scope="col">Course delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let crs of getLoadCourse.games">
+                  <td>{{crs.game_name}}</td>
+                  <td>{{crs.game_description}}</td>
+                  <td><button type="button" class="btn btn-outline-success" (click)="goCourseEdit(crs.game_id)">Edit
+                      course</button></td>
+                  <td><button type="button" class="btn btn-outline-danger" (click)="deleteCourse(crs.game_id)">Delete
+                      course</button></td>
+                </tr>
+              </tbody>
+            </table>
       </div>
     </div>
   </main>
