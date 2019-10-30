@@ -32,10 +32,19 @@ export class CourseService {
     return this.http.get<Courses>(this.redAppleUrl + 'games');
   }
 
-  updateCourse(courseId: number, gameName: string, levels: Array<Section>) {
+  updateCourse(courseId: number, gameName: string, levels?: Array<Section>, isPublish?: boolean) {
     return this.http.put<Course>(this.redAppleUrl + 'game/' + courseId, {
       game_name: gameName,
-      levels: levels
+      levels: levels,
+      game_published : isPublish
+    });
+  }
+
+  publishCourse(courseId: number, gameName: string, gameDescription: string, isPublish: boolean){
+    return this.http.put<Course>(this.redAppleUrl + 'game/' + courseId, {
+      game_name: gameName,
+      game_description: gameDescription,
+      game_published : isPublish
     });
   }
   // subscribeCourse function is subscribe to course

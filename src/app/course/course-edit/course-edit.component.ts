@@ -50,7 +50,7 @@ export class CourseEditComponent implements OnInit {
         this.sectionContent.levels.push(this.createdSection)
       }
     })
-    this.course.updateCourse(this.id, this.sectionContent.game_name, this.sectionContent.levels).subscribe();
+    this.course.updateCourse(this.id, this.sectionContent.game_name, this.sectionContent.levels, false).subscribe();
   }
   updatePage(){
     window.location.reload();

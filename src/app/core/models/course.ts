@@ -4,7 +4,7 @@ export class Course{
     game_id: number;
     game_name: string;
     game_description: string;
-    is_published: boolean;
+    game_published: boolean;
     levels: Array<Section>;
     user_id:number;
 }

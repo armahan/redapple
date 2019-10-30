@@ -8,14 +8,18 @@
                 <tr>
                   <th scope="col">Course</th>
                   <th scope="col">Course description</th>
+                  <th scope="col">Publish</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let course of courseContent.games">
                   <td>{{course.game_name}}</td>
                   <td>{{course.game_description}}</td>
-                  <td><button class="btn btn-primary btn-sm"> Publish</button></td>
-                  <td><button class="btn btn-danger btn-sm"> Unpublish</button></td>
+                  <td><select class="form-control form-control-sm" (change)="coursePublish(course, $event.target.value)">
+                    <option style="background: #5cb85c; color: #fff;" value="true" [selected]="course.game_published == true" >Published</option>
+                    <option style="background: #FF4500; color: #fff;" value="false" [selected]="course.game_published == false">Unpublished</option>
+                  </select>
+               </td>
                 </tr>
               </tbody>
             </table>
