@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { NotifierService } from "angular-notifier";
 
 import { CourseService, Course, AuthService } from '../../core';
 
@@ -9,13 +10,16 @@ import { CourseService, Course, AuthService } from '../../core';
   styleUrls: ['./course-detail.component.css']
 })
 export class CourseDetailComponent implements OnInit {
-
+  private readonly notifier: NotifierService;
   constructor(
     private route: ActivatedRoute, 
     private course: CourseService,
     private authService: AuthService,
-    private router: Router
-    ) { }
+    private router: Router,
+    notifierService: NotifierService
+    ) { 
+      this.notifier = notifierService;
+    }
   gameId : number;
   sectionContent:Course;
   
@@ -25,7 +29,6 @@ export class CourseDetailComponent implements OnInit {
         this.gameId = Number(params.get('id'))
       });
       this.getSections(this.gameId)
-      console.log(this.gameId)
     }else{
       this.router.navigate(['/login']);
     }
@@ -40,7 +43,9 @@ export class CourseDetailComponent implements OnInit {
 
   courseSubscribe(gameId:number){
     this.course.subscribeCourse(gameId).subscribe(responseData=>{
-      console.log(responseData)
+      if(responseData){
+        this.notifier.notify("success", responseData.message);
+      }
     });
   }
 }

@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
-
+import { NotifierModule } from "angular-notifier";
 import { SharedModule } from './shared';
 import { AuthModule } from './auth';
 import { CoreModule, AuthInterceptorService } from './core';
@@ -20,6 +20,7 @@ import { AdminModule } from './admin';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    NotifierModule,
     AuthModule,
     SharedModule,
     CoreModule,

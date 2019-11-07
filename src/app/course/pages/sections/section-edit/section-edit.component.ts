@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
 import { CourseService, Section } from 'src/app/core';
+import { NotifierService } from 'angular-notifier';
 
 
 
@@ -17,7 +18,15 @@ export class SectionEditComponent implements OnInit {
     levelDescription: new FormControl('', { validators: Validators.required })
   });
 
-  constructor(private course: CourseService, private route: ActivatedRoute) { }
+  private readonly notifier: NotifierService;
+  
+  constructor(
+    private course: CourseService, 
+    private route: ActivatedRoute,
+    notifierService: NotifierService
+    ) {
+      this.notifier = notifierService
+     }
   id: number;
   section: Section;
   activeContent: boolean = false;
@@ -49,6 +58,9 @@ export class SectionEditComponent implements OnInit {
     this.activeContent = !this.activeContent
     this.course.updateSection(this.id, this.section.level_name, this.section.level_description, this.section.contents).subscribe((responseData) => {
       console.log(responseData)
+      if(responseData){
+        this.notifier.notify("info", responseData.level_name + " is updated!");
+      }
     })
   }
   getNewTest($event) {
@@ -57,12 +69,19 @@ export class SectionEditComponent implements OnInit {
     this.activeTest = !this.activeTest
     this.course.updateSection(this.id, this.section.level_name, this.section.level_description, this.section.contents).subscribe((responseData) => {
       console.log(responseData)
+      if(responseData){
+        this.notifier.notify("info", responseData.level_name + " is updated!");
+      }
     })
   }
   updateLevel() {
     this.course.updateSection(this.id, this.levelForm.value.levelName, this.levelForm.value.levelDescription, this.section.contents).subscribe((responseData) => {
       console.log(responseData)
+      if(responseData){
+        this.notifier.notify("info", responseData.level_name + " is updated!");
+      }
     })
+    this.editLevel = !this.editLevel
   }
   editEnable() {
     this.editLevel = !this.editLevel
@@ -105,6 +124,10 @@ export class SectionEditComponent implements OnInit {
       })
       this.course.updateSection(this.id, this.section.level_name, this.section.level_description, this.section.contents).subscribe((responseData) => {
         console.log(responseData)
+        if(responseData){
+          this.notifier.notify("info", responseData.level_name + " is updated!");
+        }
+        
       })
     }
   }
@@ -120,6 +143,7 @@ export class SectionEditComponent implements OnInit {
    this.course.updateSection(this.id, this.section.level_name, this.section.level_description, this.section.contents).subscribe((responseData) => {
     console.log(responseData)
   })
+  this.notifier.notify("warning", " Content is removed!!!");
   }
-
+  
 }

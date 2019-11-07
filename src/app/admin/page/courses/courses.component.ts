@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseService, Courses, Course } from 'src/app/core';
 import { Router } from '@angular/router';
+import { NotifierService } from "angular-notifier";
 
 @Component({
   selector: 'app-courses',
@@ -8,11 +9,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./courses.component.css']
 })
 export class CoursesComponent implements OnInit {
-
+  private readonly notifier: NotifierService;
   constructor(
     private course: CourseService,
+    notifierService: NotifierService,
     private router: Router
-  ) { }
+  ) {
+    this.notifier = notifierService;
+   }
 
   courseContent: Courses;
   selectedCourse: Course;
@@ -45,7 +49,11 @@ export class CoursesComponent implements OnInit {
     }
     if (this.selectedCourse) {
       this.selectedCourse.game_published = isPublished
-      this.course.publishCourse(this.selectedCourse.game_id, this.selectedCourse.game_name, this.selectedCourse.game_description, this.selectedCourse.game_published).subscribe();
+      this.course.publishCourse(this.selectedCourse.game_id, this.selectedCourse.game_name, this.selectedCourse.game_description, this.selectedCourse.game_published).subscribe(responseData=>{
+        if(responseData){
+          this.notifier.notify("info", responseData.game_name + "is changed " + isPublished);
+        }
+      });
      }
   }
 }
