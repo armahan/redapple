@@ -19,14 +19,14 @@ export class SectionEditComponent implements OnInit {
   });
 
   private readonly notifier: NotifierService;
-  
+
   constructor(
-    private course: CourseService, 
+    private course: CourseService,
     private route: ActivatedRoute,
     notifierService: NotifierService
-    ) {
-      this.notifier = notifierService
-     }
+  ) {
+    this.notifier = notifierService
+  }
   id: number;
   section: Section;
   activeContent: boolean = false;
@@ -35,7 +35,7 @@ export class SectionEditComponent implements OnInit {
   editLevel: boolean = false;
   level_id: number;
   content_id: number;
-  test_id:number;
+  test_id: number;
   weight: number;
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -58,7 +58,7 @@ export class SectionEditComponent implements OnInit {
     this.activeContent = !this.activeContent
     this.course.updateSection(this.id, this.section.level_name, this.section.level_description, this.section.contents).subscribe((responseData) => {
       console.log(responseData)
-      if(responseData){
+      if (responseData) {
         this.notifier.notify("info", responseData.level_name + " is updated!");
       }
     })
@@ -69,7 +69,7 @@ export class SectionEditComponent implements OnInit {
     this.activeTest = !this.activeTest
     this.course.updateSection(this.id, this.section.level_name, this.section.level_description, this.section.contents).subscribe((responseData) => {
       console.log(responseData)
-      if(responseData){
+      if (responseData) {
         this.notifier.notify("info", responseData.level_name + " is updated!");
       }
     })
@@ -77,7 +77,7 @@ export class SectionEditComponent implements OnInit {
   updateLevel() {
     this.course.updateSection(this.id, this.levelForm.value.levelName, this.levelForm.value.levelDescription, this.section.contents).subscribe((responseData) => {
       console.log(responseData)
-      if(responseData){
+      if (responseData) {
         this.notifier.notify("info", responseData.level_name + " is updated!");
       }
     })
@@ -124,26 +124,26 @@ export class SectionEditComponent implements OnInit {
       })
       this.course.updateSection(this.id, this.section.level_name, this.section.level_description, this.section.contents).subscribe((responseData) => {
         console.log(responseData)
-        if(responseData){
+        if (responseData) {
           this.notifier.notify("info", responseData.level_name + " is updated!");
         }
-        
+
       })
     }
   }
-  removeContent(val:number){
-   let tmp = val
-   for(let content of this.section.contents){
-     if(content.weight === tmp){
-       content.weight = content.weight - 1
-       tmp += 1
-     }
-   }
-   this.section.contents.splice(val,1)
-   this.course.updateSection(this.id, this.section.level_name, this.section.level_description, this.section.contents).subscribe((responseData) => {
-    console.log(responseData)
-  })
-  this.notifier.notify("warning", " Content is removed!!!");
+  removeContent(val: number) {
+    let tmp = val
+    for (let content of this.section.contents) {
+      if (content.weight === tmp) {
+        content.weight = content.weight - 1
+        tmp += 1
+      }
+    }
+    this.section.contents.splice(val, 1)
+    this.course.updateSection(this.id, this.section.level_name, this.section.level_description, this.section.contents).subscribe((responseData) => {
+      console.log(responseData)
+    })
+    this.notifier.notify("warning", " Content is removed!!!");
   }
-  
+
 }

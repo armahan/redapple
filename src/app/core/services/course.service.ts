@@ -119,6 +119,10 @@ export class CourseService {
   getContent(contentId: number) {
     return this.http.get<Content>(this.redAppleUrl + 'content/' + contentId);
   }
+  
+  getContentsByUser() {
+    return this.http.get<Content>(this.redAppleUrl + 'contents/user');
+  }
 
   createQuiz(quizName: string) {
     return this.http.post<Contents>(this.redAppleUrl + 'test/create', {
@@ -136,6 +140,11 @@ export class CourseService {
   getQuiz(quizId: number) {
     return this.http.get<Contents>(this.redAppleUrl + 'test/' + quizId);
   }
+
+  getQuizzesByUser() {
+    return this.http.get<Content>(this.redAppleUrl + 'tests/user');
+  }
+
   createQuestion(qcode: string, qsubjectId: number, qquest: string, optionsArray: Array<Option>) {
     return this.http.post<Question>(this.redAppleUrl + 'question/create', {
       code: qcode,
