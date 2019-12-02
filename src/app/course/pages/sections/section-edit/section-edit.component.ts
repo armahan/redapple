@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
-import { CourseService, Section } from 'src/app/core';
+import { CourseService, Section, Contents } from 'src/app/core';
 import { NotifierService } from 'angular-notifier';
 
 
@@ -29,6 +29,7 @@ export class SectionEditComponent implements OnInit {
   }
   id: number;
   section: Section;
+  allContents: Contents;
   activeContent: boolean = false;
   activeTest: boolean = false;
   updateSection: boolean = false;

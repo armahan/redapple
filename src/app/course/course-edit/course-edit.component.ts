@@ -12,23 +12,19 @@ import { CourseService, Course, User, Section } from 'src/app/core';
 export class CourseEditComponent implements OnInit {
   public sectionForm = new FormGroup({
     sectionName: new FormControl('', { validators: Validators.required }),
-    description: new FormControl('', { validators: Validators.required }),
-    weight: new FormControl('')
+    description: new FormControl('', { validators: Validators.required })
   });
 
-  constructor(private route: ActivatedRoute, private router:Router, private course: CourseService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private course: CourseService) { }
   id: number;
   sectionContent: Course;
-  newSections :Array<Section> =[];
+  newSections: Array<Section> = [];
   createdSection = {} as Section;
-  levelCount : number = 0;
+  levelCount: number = 0;
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.id = Number(params.get('id'))
     });
-    this.getSections(this.id)
-  }
-  ngOnChanges() {
     this.getSections(this.id)
   }
   getSections(game_id: number) {
@@ -40,28 +36,30 @@ export class CourseEditComponent implements OnInit {
       })
     });
   }
-  createSection(sectionName: string, description: string, contents: any, weight:number) {
+  createSection(sectionName: string, description: string, contents: any, weight: number) {
     this.course.createSection(sectionName, description, contents).subscribe((responseData) => {
       if (responseData.level_id) {
         this.createdSection.level_id = responseData.level_id
-        this.createdSection.level_name = this.sectionForm.value.sectionName
-        this.createdSection.level_description = this.sectionForm.value.description
+        this.createdSection.level_name = responseData.level_name
+        this.createdSection.level_description = responseData.level_description
         this.createdSection.weight = weight
         this.sectionContent.levels.push(this.createdSection)
+        this.course.updateCourse(this.id, this.sectionContent.game_name, this.sectionContent.levels, false).subscribe();
+        this.levelCount = this.sectionContent.levels.length
       }
-    })
-    this.course.updateCourse(this.id, this.sectionContent.game_name, this.sectionContent.levels, false).subscribe();
+    });
+
   }
-  updatePage(){
+  updatePage() {
     window.location.reload();
   }
-  deleteLevel(levelId:number){
+  deleteLevel(levelId: number) {
     this.course.deleteSection(levelId).subscribe();
     window.location.reload();
   }
-  editLevel(id){
-      this.router.navigate(['/section-edit', id]).then( (e) => {
-      });
+  editLevel(id) {
+    this.router.navigate(['/section-edit', id]).then((e) => {
+    });
   }
   weightSwap(valUp: number, valDown: number) {
     let tmp = valUp
@@ -74,9 +72,10 @@ export class CourseEditComponent implements OnInit {
     }
   }
   onSubmit() {
-    this.createSection(this.sectionForm.value.sectionName, this.sectionForm.value.description, null, this.sectionForm.value.weight)
+    this.createSection(this.sectionForm.value.sectionName, this.sectionForm.value.description, null, this.levelCount);
     //console.log(this.sectionForm.value.weight)
     this.sectionForm.reset();
-    
+    this.getSections(this.id);
   }
+
 }
