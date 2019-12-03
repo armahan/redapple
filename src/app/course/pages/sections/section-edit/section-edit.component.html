@@ -10,18 +10,17 @@
         <button class="btn btn-outline-success flex-sm-fill text-sm-center" [disabled]="!updateSection"
           (click)="updateLevel()">Update section</button>
         <button class="btn btn-outline-success flex-sm-fill text-sm-center" (click)="editEnable()">Edit section</button>
-        <button class="btn btn-outline-primary flex-sm-fill text-sm-center" (click)="createContent()">Create
-          content</button>
+        <button class="btn btn-outline-primary flex-sm-fill text-sm-center" (click)="createContent()">Create content</button>
         <button class="btn btn-outline-primary flex-sm-fill text-sm-center" (click)="createTest()">Create test</button>
       </div>
       <div class="col-9" *ngIf="editLevel">
         <form [formGroup]="levelForm">
           <div class="form-group">
-            <label for="levelName">Level name</label>
+            <label for="levelName">Section name</label>
             <input type="text" class="form-control" formControlName="levelName">
           </div>
           <div class="form-group">
-            <label for="levelDescription">Level description</label>
+            <label for="levelDescription">Section description</label>
             <input type="text" class="form-control" formControlName="levelDescription">
           </div>
         </form>

@@ -22,6 +22,7 @@ export class QuizEditComponent implements OnInit {
   createTest: Test;
   createdTest: Contents;
   createdTestId: number;
+  isTestUpdated: boolean = false;
   editTest: boolean = false;
   activeNewQuestion: boolean = false;
   myQuestions: Questions;
@@ -31,6 +32,7 @@ export class QuizEditComponent implements OnInit {
     if (this.test_id) {
       this.editTest = true
       this.getTest(this.test_id)
+      
     }
   }
   allQuestions(){
@@ -86,10 +88,12 @@ export class QuizEditComponent implements OnInit {
     let index = this.myQuestions.questions.indexOf(question)
     this.createdTest.questions.push(question)
     this.myQuestions.questions.splice(index, 1)
+    this.isTestUpdated = !this.isTestUpdated
   }
   removeQuestion(question: any) {
     let index = this.createdTest.questions.indexOf(question)
     this.createdTest.questions.splice(index, 1)
+    this.isTestUpdated = !this.isTestUpdated
   }
   mergeQuestions(question: any) {
     let index = this.myQuestions.questions.indexOf(question)
